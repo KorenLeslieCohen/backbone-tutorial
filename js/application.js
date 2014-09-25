@@ -34,8 +34,9 @@ var AnimalView = Backbone.View.extend({
     'click .button.delete': 'destroy'
   },
   initialize: function() {
-    this.listenTo(this.model, 'change', this.render);
+    this.render(); // render is an optional function that defines the logic for rendering a template
   },
   render: function() {
+    this.$el.html(this.model.get('name') + ' is ' + this.model.get('color') + ' and says ' + this.model.get('sound'));
   }
 });
