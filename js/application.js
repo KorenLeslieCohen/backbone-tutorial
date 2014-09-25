@@ -23,3 +23,19 @@ var Animal = Backbone.Model.extend({
 // dog.on('error', function (model, error) {
 //     console.log(error);
 // });
+
+var AnimalView = Backbone.View.extend({
+  tagName: 'li',
+  className: 'animal',
+  id: 'dogs',
+  events: {
+    'click .icon':          'open',
+    'click .button.edit':   'openEditDialog',
+    'click .button.delete': 'destroy'
+  },
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  },
+  render: function() {
+  }
+});
