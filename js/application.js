@@ -25,9 +25,9 @@ var Animal = Backbone.Model.extend({
 // });
 
 var AnimalView = Backbone.View.extend({
-  tagName: 'li',
-  className: 'animal',
-  id: 'dogs',
+  tagName: 'li', // defaults to div if not specified
+  className: 'animal', // optional, can also set multiple like 'animal dog'
+  id: 'dogs', // also optional
   events: {
     'click .icon':          'open',
     'click .button.edit':   'openEditDialog',
