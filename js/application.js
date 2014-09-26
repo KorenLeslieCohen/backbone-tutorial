@@ -1,3 +1,4 @@
+// defines the Animal model
 var Animal = Backbone.Model.extend({
   defaults: {
     name: 'Fido',
@@ -17,6 +18,12 @@ var Animal = Backbone.Model.extend({
   }
 });
 
+// defines an Animal collection
+var AnimalCollection = Backbone.Collection.extend({
+ model: Animal
+});
+
+// defines the Animal view
 var AnimalView = Backbone.View.extend({
   tagName: 'li', // defaults to div if not specified
   className: 'animal', // optional, can also set multiple like 'animal dog'
