@@ -17,13 +17,6 @@ var Animal = Backbone.Model.extend({
   }
 });
 
-// dog = new Animal();
-// dog.set('name','a',{validate: true});
-
-// dog.on('error', function (model, error) {
-//     console.log(error);
-// });
-
 var AnimalView = Backbone.View.extend({
   tagName: 'li', // defaults to div if not specified
   className: 'animal', // optional, can also set multiple like 'animal dog'
@@ -33,10 +26,14 @@ var AnimalView = Backbone.View.extend({
     'click .button.edit':   'openEditDialog',
     'click .button.delete': 'destroy'
   },
+  // newTemplate: _.template('<%= name %> is <%= color %> and says <%= sound %>'), // inline template
+  newTemplate: _.template($('#dogTemplate').html()), // external template
   initialize: function() {
     this.render(); // render is an optional function that defines the logic for rendering a template
   },
   render: function() {
-    this.$el.html(this.model.get('name') + ' is ' + this.model.get('color') + ' and says ' + this.model.get('sound'));
+    // the below line represents the code prior to adding the template
+    // this.$el.html(this.model.get('name') + ' is ' + this.model.get('color') + ' and says ' + this.model.get('sound'));
+    this.$el.html(this.newTemplate(this.model.toJSON())); // calls the template
   }
 });
