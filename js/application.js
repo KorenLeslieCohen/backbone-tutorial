@@ -20,7 +20,7 @@ var Animal = Backbone.Model.extend({
 
 // Animal collection
 var AnimalCollection = Backbone.Collection.extend({
- model: Animal
+  model: Animal
 });
 
 // Animal view
@@ -73,5 +73,13 @@ var animalCollection = new AnimalCollection([
     sound: 'arf'
   }
 ]);
+
+// View for all animals (collection)
+var AnimalsView = Backbone.View.extend({ // notice the variable is now plural
+  tagName: 'ul',
+  render: function(){
+
+  }
+});
 
 
