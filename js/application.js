@@ -18,11 +18,6 @@ var Animal = Backbone.Model.extend({
   }
 });
 
-// Animal collection
-var AnimalCollection = Backbone.Collection.extend({
-  model: Animal
-});
-
 // Animal view
 var AnimalView = Backbone.View.extend({
   tagName: 'li', // defaults to div if not specified
@@ -45,15 +40,20 @@ var AnimalView = Backbone.View.extend({
   }
 });
 
-// adding individual models to collection
-// var chihuahua = new Animal({name: 'Sugar', color: 'black', sound: 'woof'});
-// var chihuahuaView = new AnimalView({model: chihuahua});
-// var animalCollection = new AnimalCollection(); // only need to create the collection once
-// animalCollection.add(chihuahua);
+// Animal collection
+var AnimalCollection = Backbone.Collection.extend({
+  model: Animal
+});
 
-// var pug = new Animal({name: 'Gizmo', color: 'tan', sound: 'woof'});
-// var pugView = new AnimalView({model: pug});
-// animalCollection.add(pug); // can now directly add to animalCollection
+// adding individual models to collection
+var chihuahua = new Animal({name: 'Sugar', color: 'black', sound: 'woof'});
+var chihuahuaView = new AnimalView({model: chihuahua});
+var animalCollection = new AnimalCollection(); // only need to create the collection once
+animalCollection.add(chihuahua);
+
+var pug = new Animal({name: 'Gizmo', color: 'tan', sound: 'woof'});
+var pugView = new AnimalView({model: pug});
+animalCollection.add(pug); // can now directly add to animalCollection
 
 // adding multiple models to collection
 var animalCollection = new AnimalCollection([
