@@ -13,10 +13,10 @@ Tutorial.Models.Animal = Backbone.Model.extend({
     sound: 'woof'
   },
   validate: function(attrs, options){
-    if ( !attrs.name ){
+    if (!attrs.name){
         alert('Your animal must have a name!');
     }
-    if ( attrs.name.length < 2 ){
+    if (attrs.name.length < 2){
         alert('Your animal\'s name must have more than one letter!');
     }
   },
@@ -39,17 +39,24 @@ Tutorial.Views.Animal = Backbone.View.extend({
   //   alert('Backbone click event works');
   // },
   editAnimal: function(){
-    var editedAnimal = prompt('Enter new animal name:', this.model.get('name'), this.model.get('color'));
+    var newAnimal = prompt("New animal name:", this.model.get('name')); // prompts for new name
+    if (!newAnimal)return;  // no change if user hits cancel
+    this.model.set('name', newAnimal); // sets new name to model
   },
   deleteAnimal: function(){
-    alert('You\'ve clicked delete');
+    this.model.destroy(); // deletes the model when delete button clicked
   },
   // newTemplate: _.template('<%= name %> is <%= color %> and says <%= sound %>'), // inline template
   newTemplate: _.template($('#dogTemplate').html()), // external template
-  initialize: function() {
+  initialize: function(){
     this.render(); // render is an optional function that defines the logic for rendering a template
+    this.model.on('change', this.render, this); // calls render function once name changed
+    this.model.on('destroy', this.remove, this); // calls remove function once model deleted
   },
-  render: function() {
+  remove: function(){
+    this.$el.remove(); // removes the HTML element from view when delete button clicked/model deleted
+  },
+  render: function(){
     // the below line represents the code prior to adding the template
     // this.$el.html(this.model.get('name') + ' is ' + this.model.get('color') + ' and says ' + this.model.get('sound'));
     this.$el.html(this.newTemplate(this.model.toJSON())); // calls the template

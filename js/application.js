@@ -26,7 +26,7 @@ var AnimalView = Backbone.View.extend({
   events: {
     'click':         'alertTest',
     'click .edit':   'editAnimal',
-    'click .delete': 'destroyAnimal'
+    'click .delete': 'deleteAnimal'
   },
   // newTemplate: _.template('<%= name %> is <%= color %> and says <%= sound %>'), // inline template
   newTemplate: _.template($('#dogTemplate').html()), // external template
