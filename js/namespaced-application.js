@@ -31,9 +31,18 @@ Tutorial.Views.Animal = Backbone.View.extend({
   className: 'animal', // optional, can also set multiple like 'animal dog'
   id: 'dogs', // also optional
   events: {
-    'click':         'alertTest',
+    // 'click':      'alertTest',
     'click .edit':   'editAnimal',
-    'click .delete': 'destroyAnimal'
+    'click .delete': 'deleteAnimal'
+  },
+  // alertTest: function(){
+  //   alert('Backbone click event works');
+  // },
+  editAnimal: function(){
+    var editedAnimal = prompt('Enter new animal name:', this.model.get('name'), this.model.get('color'));
+  },
+  deleteAnimal: function(){
+    alert('You\'ve clicked delete');
   },
   // newTemplate: _.template('<%= name %> is <%= color %> and says <%= sound %>'), // inline template
   newTemplate: _.template($('#dogTemplate').html()), // external template
