@@ -2,7 +2,8 @@
 window.Tutorial = {  // top level namespace is declared on the window
   Models: {},
   Collections: {},
-  Views: {}
+  Views: {},
+  Router: {}
 };
 
 // Animal model
@@ -114,3 +115,21 @@ Tutorial.Views.Animals = Backbone.View.extend({ // plural to distinguish as the 
 // creates view for collection and renders collection
 var animalsView = new Tutorial.Views.Animals({collection: animalCollection});
 animalsView.render();
+
+// Backbone router
+Tutorial.Router = Backbone.Router.extend({
+  routes: { // sets the routes
+    '':         'index', // http://tutorial.com
+    'edit/:id': 'edit' // http://tutorial.com/#edit/7
+  },
+  // the same as we did for click events, we now define function for each route
+  index: function(){ 
+    console.log('index route');
+  },
+  edit: function(id){
+    console.log('edit route with id: ' + id);
+  }
+});
+
+new Tutorial.Router;
+Backbone.history.start(); // start Backbone history
