@@ -131,5 +131,5 @@ Tutorial.Router = Backbone.Router.extend({
   }
 });
 
-new Tutorial.Router;
+var newRouter = new Tutorial.Router;
 Backbone.history.start(); // start Backbone history
