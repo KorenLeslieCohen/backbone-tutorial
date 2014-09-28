@@ -55,7 +55,7 @@ var pug = new Animal({name: 'Gizmo', color: 'tan', sound: 'woof'});
 var pugView = new AnimalView({model: pug});
 animalCollection.add(pug); // can now directly add to animalCollection
 
-// adding multiple models to collection
+// adding multiple models to collection (this will override the above AnimalCollection)
 var animalCollection = new AnimalCollection([
   {
     name: 'Sugar',
@@ -75,11 +75,22 @@ var animalCollection = new AnimalCollection([
 ]);
 
 // View for all animals (collection)
-var AnimalsView = Backbone.View.extend({ // notice the variable is now plural
+var AnimalsView = Backbone.View.extend({ // calling this AnimalsView to distinguish as the view for the collection
   tagName: 'ul',
+  initialize: function(){
+    this.collection;
+  },
   render: function(){
-
+    this.collection.each(function(Animal){
+      var animalView = new AnimalView({model: Animal});
+      $(document.body).append(animalView.el);
+    });
   }
 });
+
+// creates view for collection and renders collection
+var animalsView = new AnimalsView({collection: animalCollection});
+animalsView.render();
+
 
 
