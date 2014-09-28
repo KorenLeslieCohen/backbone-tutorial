@@ -31,9 +31,9 @@ Tutorial.Views.Animal = Backbone.View.extend({
   className: 'animal', // optional, can also set multiple like 'animal dog'
   id: 'dogs', // also optional
   events: {
-    'click .icon':          'open',
-    'click .button.edit':   'openEditDialog',
-    'click .button.delete': 'destroy'
+    'click':         'alertTest',
+    'click .edit':   'editAnimal',
+    'click .delete': 'destroyAnimal'
   },
   // newTemplate: _.template('<%= name %> is <%= color %> and says <%= sound %>'), // inline template
   newTemplate: _.template($('#dogTemplate').html()), // external template
