@@ -1,5 +1,5 @@
 // defines the namespace
-window.Tutorial = {   
+window.Tutorial = {  // top level namespace is declared on the window
   Models: {},
   Collections: {},
   Views: {}
@@ -82,7 +82,7 @@ var animalCollection = new Tutorial.Collections.Animal([
 ]);
 
 // View for all animals (collection)
-Tutorial.Views.Animals = Backbone.View.extend({ // calling this AnimalsView to distinguish as the view for the collection
+Tutorial.Views.Animals = Backbone.View.extend({ // plural to distinguish as the view for the collection
   tagName: 'ul',
   initialize: function(){
     this.collection;
